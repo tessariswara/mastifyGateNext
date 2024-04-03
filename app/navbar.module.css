@@ -1,0 +1,45 @@
+.navbar {
+    /* background-color: brown; */
+    display: flex;
+    align-items: center;
+}
+
+.navbarLogo {
+    background-color: #D9D9D9;
+    padding: 19px 20px;
+}
+
+.navbarUser {
+    display: flex;
+    gap: 23px;
+}
+
+.navbarUser li {
+    display: flex;
+    background-color: #D9D9D9;
+    padding: 19px 20px;
+}
+
+.navbarLi {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    margin: auto;
+    padding: 45px 100px;
+}
+
+.navbar-user-photo {
+    background-color: red;
+    width: 56px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 200px;
+}
+
+.navbar-user-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}

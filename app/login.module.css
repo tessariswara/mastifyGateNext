@@ -1,0 +1,27 @@
+.overlayLogin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerLogin {
+    background-color: #D0D0D0;
+    align-items: center;
+    text-align: center;
+    padding: 45px;
+}
+
+.containerLogin button {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #424242;
+    color: white;
+    border: 0;
+    padding: 20px;
+    font-size: 18px;
+}
