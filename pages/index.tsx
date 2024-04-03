@@ -6,7 +6,7 @@ import DetailControllerModal from '../components/modal/detailControllerModal';
 import AddReaderModal from '../components/modal/addReaderModal';
 import ConfirmModal from '../components/modal/confirmationModal';
 import { fetchData } from '@/components/api/listDataApi';
-import { getToken } from '@/components/api/token'
+// import { getToken } from '@/components/api/token'
 
 const ActionType = {
     OPEN_MODAL: 'OPEN_MODAL',
@@ -38,9 +38,9 @@ const HomePage: React.FC = () => {
     });
 
     const [controllers, setControllers] = useState([]);
-    const token = getToken();
+    // const token = getToken();
 
-    console.log("ini token : ", token);
+    // console.log("ini token : ", token);
 
     useEffect(() => {
         const fetchControllerData = async () => {
