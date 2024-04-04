@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import Style from '@/app/login.module.css';
 import StyleModal from '@/app/modal.module.css';
 import { useRouter } from 'next/router';
-// import { setToken } from '@/components/api/token'
+import { setToken } from '@/components/api/token'
 
 const initialState = {
   username: '',
@@ -55,7 +55,7 @@ const login = () => {
         dispatch({ type: 'LOGIN_SUCCESS' });
         const data = await response.json();
         const token = data.data.Token;
-        // setToken(token);
+        setToken(token);
         console.log("Data login berhasil:", data.data.Token);
         if (data.message === 'success') { 
           console.log("Login berhasil!");

@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from '@/components/modal/modal';
 import Style from '@/app/index.module.css';
 import StyleModal from '@/app/modal.module.css';
-import AddReaderModal from './addReaderModal';
+import AddReaderModal from './addReaderModal'; 
 
 interface ControllerData {
     id: string;
@@ -18,6 +18,7 @@ interface DetailControllerModalProps {
     controllerData?: ControllerData[];
     selectedIndex?: number;
     openEditReaderModal: (index: number, reader: ReaderData) => void; 
+    readerData: ReaderData[];
 }
 
 const DetailControllerModal: React.FC<DetailControllerModalProps> = ({  
@@ -26,15 +27,8 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
     controllerData,
     selectedIndex,
     openEditReaderModal,
+    readerData
 }) => {
-
-    const readerData = [
-        { id: 'Reader-001', name: 'Reader 1' },
-        { id: 'Reader-002', name: 'Reader 2' },
-        { id: 'Reader-003', name: 'Reader 3' },
-        { id: 'Reader-004', name: 'Reader 4' }
-    ];
-
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className={StyleModal.layoutModal}>
@@ -46,7 +40,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                             <input 
                                 type="text" 
                                 id="controllerID"
-                                value={controllerData && selectedIndex !== undefined ? controllerData[selectedIndex].id : '' }
+                                value={controllerData.length > 0 && selectedIndex !== undefined ? controllerData[selectedIndex].id : '' }
                                 readOnly />
                         </div>
                         <div className={StyleModal.detailInput}>
@@ -54,7 +48,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                             <input 
                                 type="text" 
                                 id="controllerType"
-                                value={controllerData && selectedIndex !== undefined ? controllerData[selectedIndex].type : '' }
+                                value={controllerData.length > 0 && selectedIndex !== undefined ? controllerData[selectedIndex].type : '' }
                                 readOnly />
                         </div>
                     </div>
@@ -63,7 +57,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                         <input
                             type="text"
                             id="controllerName"
-                            value={controllerData && selectedIndex !== undefined ? controllerData[selectedIndex].name : '' }
+                            value={controllerData.length > 0 && selectedIndex !== undefined ? controllerData[selectedIndex].name : '' }
                             readOnly
                         />
                     </div>
@@ -73,7 +67,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                             <input 
                                 type="text" 
                                 id="controllerManufacture"
-                                value={controllerData && selectedIndex !== undefined ? controllerData[selectedIndex].manufacture : '' }
+                                value={controllerData.length > 0 && selectedIndex !== undefined ? controllerData[selectedIndex].manufacture : '' }
                                 readOnly />
                         </div>
                         <div className={StyleModal.detailInput}>
@@ -81,7 +75,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                             <input 
                                 type="text" 
                                 id="controllerIP" 
-                                value={controllerData && selectedIndex !== undefined ? controllerData[selectedIndex].ip : '' }
+                                value={controllerData.length > 0 && selectedIndex !== undefined ? controllerData[selectedIndex].ip : '' }
                                 readOnly/>
                         </div>
                     </div>
@@ -102,24 +96,24 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                                     <h2>Action</h2>
                                 </div>
                             </div>
-                            {readerData && readerData.map((reader, index) => (
-                                <div className={Style.listReaderData} key={index}>
-                                    <p>{reader.id}</p>
-                                    <p>{reader.name}</p>
-                                    <div className={Style.listReaderAct}>
-                                        <div className={Style.listReaderAction}>
-                                            <a onClick={() => {
-                                                openEditReaderModal(index, reader); 
-                                            }}>
-                                                <img src="/images/Edit.png" alt="Deskripsi gambar" />
-                                            </a>
-                                            <a>
-                                                <img src="/images/Delete.png" alt="Deskripsi gambar" />
-                                            </a>
-                                        </div>
+                            {Array.isArray(readerData[selectedIndex]?.reader) && readerData[selectedIndex]?.reader.map((reader, index) => (
+                            <div className={Style.listReaderData} key={index}>
+                                <p>{reader.reader_no}</p>
+                                <p>{reader.reader_id}</p>
+                                <div className={Style.listReaderAct}>
+                                    <div className={Style.listReaderAction}>
+                                        <a onClick={() => {
+                                            openEditReaderModal(index, reader); 
+                                        }}>
+                                            <img src="/images/Edit.png" alt="Deskripsi gambar" />
+                                        </a>
+                                        <a>
+                                            <img src="/images/Delete.png" alt="Deskripsi gambar" />
+                                        </a>
                                     </div>
                                 </div>
-                            ))}
+                            </div>
+                        ))}
                         </div>
                     </div>
                 </div>

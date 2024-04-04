@@ -5,13 +5,14 @@ import AddControllerModal from '../components/modal/addControllerModal';
 import DetailControllerModal from '../components/modal/detailControllerModal';
 import AddReaderModal from '../components/modal/addReaderModal';
 import ConfirmModal from '../components/modal/confirmationModal';
-import { fetchData } from '@/components/api/listDataApi';
-// import { getToken } from '@/components/api/token'
+import { getToken } from '@/components/api/token'
 
 const ActionType = {
     OPEN_MODAL: 'OPEN_MODAL',
     CLOSE_MODAL: 'CLOSE_MODAL',
     SET_SELECTED_INDEX: 'SET_SELECTED_INDEX',
+    SET_CONTROLLER_DATA: 'SET_CONTROLLER_DATA',
+    SET_READER_DATA: 'SET_READER_DATA'
 };
 
 const modalReducer = (state, action) => {
@@ -22,6 +23,10 @@ const modalReducer = (state, action) => {
             return { ...state, [action.modalType]: false };
         case ActionType.SET_SELECTED_INDEX:
             return { ...state, selectedIndex: action.selectedIndex };
+        case ActionType.SET_CONTROLLER_DATA:
+            return { ...state, controllerData: action.controllerData };
+        case ActionType.SET_READER_DATA:
+            return { ...state, dataReader: action.dataReader };
         default:
             return state;
     }
@@ -34,20 +39,66 @@ const HomePage: React.FC = () => {
         addReaderModal: false,
         confirmModal: false,
         selectedIndex: 0,
-        readerSelectedIndex: 0 
+        readerSelectedIndex: 0,
+        controllerData: [], 
+        dataReader: []
     });
-
-    const [controllers, setControllers] = useState([]);
-    // const token = getToken();
-
-    // console.log("ini token : ", token);
+    const token = getToken();
 
     useEffect(() => {
-        const fetchControllerData = async () => {
-            const data = await fetchData();
-            setControllers(data);
+        const fetchApi = async () => {
+            try {
+                const bodyData = {
+                    filter: {
+                        set_device_id: false,
+                        device_id: "",
+                        set_device_type: false,
+                        device_type: "",
+                        set_name: false,
+                        name: "",
+                        set_manufacture: false,
+                        manufacture: "",
+                        set_ip_address: false,
+                        ip_address: ""
+                    },
+                    limit: 10,
+                    page: 1,
+                    order: "created_at",
+                    sort: "DESC"
+                };
+
+                const response = await fetch('http://178.128.107.238:8000/apiv1/control/allcontrollers', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+                const data = await response.json();
+                const dataModified = data.data.map(item => ({
+                    ...item,
+                    sid: item.id,
+                    id: item.device_controller_id,
+                    type: item.device_controller_type,
+                    name: item.name,
+                    manufacture: item.manufacture,
+                    ip: item.ip_address
+                }));
+                const dataReader = dataModified.map(item => ({
+                    reader: item.reader.map(readerItem => ({
+                        ...readerItem,
+                    }))
+                }));
+                
+                dispatch({ type: ActionType.SET_CONTROLLER_DATA, controllerData: dataModified });
+                dispatch({ type: ActionType.SET_READER_DATA, dataReader: dataReader });
+            } catch (error) {
+                console.error('Error fetching controller data:', error);
+            }
         };
-        fetchControllerData();
+
+        fetchApi();
     }, []);
 
     const openModal = (modalType) => {
@@ -76,45 +127,7 @@ const HomePage: React.FC = () => {
         setEditedReader(reader);
         openModal('editReaderModal');
     };
-    
 
-    const controllerData = [
-        {
-            id: 'CT-001',
-            type: 'Type A',
-            name: 'Controller 1',
-            manufacture: 'Manufacturer A',
-            ip: '192.168.1.1'
-        },
-        {
-            id: 'CT-002',
-            type: 'Type B',
-            name: 'Controller 2',
-            manufacture: 'Manufacturer B',
-            ip: '192.168.1.2'
-        },
-        {
-            id: 'CT-003',
-            type: 'Type C',
-            name: 'Controller 3',
-            manufacture: 'Manufacturer C',
-            ip: '192.168.1.3'
-        },
-        {
-            id: 'CT-004',
-            type: 'Type D',
-            name: 'Controller 4',
-            manufacture: 'Manufacturer D',
-            ip: '192.168.1.4'
-        },
-        {
-            id: 'CT-005',
-            type: 'Type E',
-            name: 'Controller 5',
-            manufacture: 'Manufacturer E',
-            ip: '192.168.1.5'
-        }
-    ];
 
     return (
         <div className={Style.container}>
@@ -131,10 +144,10 @@ const HomePage: React.FC = () => {
                 <h2>Total Reader</h2>
                 <h2>Action</h2>
             </div>
-            {controllerData.map((controller, index) => (
+            {modalState.controllerData && modalState.controllerData.map((controller, index) => (
                 <div className={Style.listData} key={index}>
                     <p>{controller.name}</p>
-                    <p>5</p>
+                    <p>{controller.reader.length}</p>
                     <div className={Style.listAct}>
                         <div className={Style.listAction}>
                             <a onClick={() => {
@@ -159,9 +172,10 @@ const HomePage: React.FC = () => {
             <DetailControllerModal
                 isOpen={modalState.detailControllerModal}
                 onClose={() => closeModal('detailControllerModal')}
-                controllerData={controllerData}
+                controllerData={modalState.controllerData}
                 selectedIndex={modalState.selectedIndex}
                 openEditReaderModal={openEditReaderModal} 
+                readerData={modalState.dataReader} 
             />
             <AddReaderModal 
                 isOpen={modalState.addReaderModal} 
@@ -205,7 +219,7 @@ const HomePage: React.FC = () => {
                     closeModal('editControllerModal');
                 }}
                 mode={'edit'}
-                controllerData={controllerData}
+                controllerData={modalState.controllerData}
                 selectedIndex={modalState.selectedIndex} 
             />
         </div>

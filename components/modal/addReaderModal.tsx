@@ -41,7 +41,7 @@ const AddReaderModal: React.FC<AddReaderModalProps> = ({
                         <input
                             type="text"
                             id="readerNumber"
-                            defaultValue={mode === 'edit' && readerData? readerData.id : ''}
+                            defaultValue={mode === 'edit' && readerData? readerData.reader_no : ''}
                             readOnly={mode === 'edit'}
                         />
                     </div>
@@ -50,7 +50,7 @@ const AddReaderModal: React.FC<AddReaderModalProps> = ({
                         <input
                             type="text"
                             id="readerID"
-                            defaultValue={mode === 'edit' && readerData? readerData.name : ''}
+                            defaultValue={mode === 'edit' && readerData? readerData.reader_id : ''}
                         />
                     </div>
                 </div>
