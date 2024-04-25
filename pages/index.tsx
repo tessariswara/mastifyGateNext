@@ -3,6 +3,7 @@ import Style from '@/app/login.module.css';
 import StyleModal from '@/app/modal.module.css';
 import { useRouter } from 'next/router';
 import { setToken } from '@/components/api/token'
+import RootLayout from '@/components/RootLayout';
 
 const initialState = {
   username: '',
@@ -25,8 +26,6 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
-
 
 const login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -71,27 +70,30 @@ const login = () => {
   };
 
   return (
+    <RootLayout>
     <div className={Style.overlayLogin}>
+      <div className={Style.backgroundLogin}>
+        <img src="/images/background.png" alt="" />
+      </div>
       <div className={Style.containerLogin}> 
         <img className={Style.logo} src="/images/habitat.png" alt="" />
-        <p>Welcome to Habitat. Please sign in to your account</p>
-        <div className={StyleModal.containerForm}>
-          <div className={StyleModal.formModal}>
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" value={state.username} onChange={dataForm} />
+        <p className={Style.head}>Welcome to Habitat. Please sign in to your account</p>
+        <div className={Style.containerForm}>
+          <div className={Style.formModal}>
+            <input type="text" id="username" value={state.username} onChange={dataForm} placeholder='Username' required/>
           </div>
-          <div className={StyleModal.formModal}>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={state.password} onChange={dataForm} />
+          <div className={Style.formModal}>
+            <input type="password" id="password" value={state.password} onChange={dataForm} placeholder='Password' />
           </div>
           <div>
             <button onClick={loginButton} disabled={state.loading}>Login</button>
           </div>
-          <p>Project collaboration of Mast and WIT.ID ©️ 2024 All rights reserved</p>
-          {state.error && <p>{state.error}</p>}
+          {state.error && <p className={Style.error}>{state.error}</p>}
+          <p className={Style.foot}>Project collaboration of Mast and WIT.ID ©️ 2024 All rights reserved</p>
         </div>
       </div>
     </div>
+    </RootLayout>
   );
 };
 

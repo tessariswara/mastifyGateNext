@@ -1,25 +1,68 @@
+
 .overlayLogin {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin: 0;
+    font-family: "Plus Jakarta Sans";
+    letter-spacing: -0.5px;
+}
+
+.backgroundLogin img {
+    width: 100%; 
+    height: 100vh;
+    object-fit: cover; 
+}
+
+.backgroundLogin {
+    width: 100%; 
+    height: 100vh;
+    overflow: hidden;
+}
+
+.formModal {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+.formModal input {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    font-size: 14px;
+    background-color: white;
+    border: 2px solid #D5D5D5;
+    border-radius: 12px;
+    width: 389px;
+    padding: 15px 25px;
+}
+
+.formModal input:focus-within {
+    border-color: red;
 }
 
 .logo {
     width: 127px;
 }
 
+.containerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 50px 0;
+    position: relative;
+}
+
 .containerLogin {
     align-items: center;
     text-align: center;
-    padding: 45px;
+    padding: 144px;
 }
 
 .containerLogin button {
+    font-family: "Plus Jakarta Sans";
     margin-top: 10px;
     width: 100%;
     background-color: #005229;
@@ -28,4 +71,26 @@
     border: 0;
     padding: 20px;
     font-size: 18px;
+}
+
+.head {
+    margin-top: 56px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.foot {
+    margin-top: 102px;
+    color: #666666;
+    font-size: 10px;
+    letter-spacing: -0.2px;
+}
+
+.error {
+    display: flex;
+    top: 250px;
+    left: 22.5%;
+    position: absolute;
+    color: red;
+
 }
