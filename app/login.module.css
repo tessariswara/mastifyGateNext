@@ -9,8 +9,11 @@
     align-items: center;
 }
 
+.logo {
+    width: 127px;
+}
+
 .containerLogin {
-    background-color: #D0D0D0;
     align-items: center;
     text-align: center;
     padding: 45px;
@@ -19,7 +22,8 @@
 .containerLogin button {
     margin-top: 10px;
     width: 100%;
-    background-color: #424242;
+    background-color: #005229;
+    border-radius: 12px;
     color: white;
     border: 0;
     padding: 20px;

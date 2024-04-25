@@ -10,11 +10,14 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,json,md}\""
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.10",
     "axios": "^1.6.8",
+    "framer-motion": "^11.0.25",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@types/node": "^20",

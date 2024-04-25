@@ -7,10 +7,10 @@ const Navbar: React.FC = () => {
     <nav className={Navstyle.navbar}>
         <div className={Navstyle.navbarLi}>
             <div className={Navstyle.navbarLogo}>
-                <Link href="/">Logo Mastify</Link>
+                <Link href="/home">Logo Mastify</Link>
             </div>
             <div className={Navstyle.navbarUser}>
-                <li><Link href="/login">Mang Ujang</Link></li>
+                <li><Link href="/">Mang Ujang</Link></li>
             </div>
         </div>
     </nav>
