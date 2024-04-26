@@ -2,7 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Navstyle from '../app/navbar.module.css'
 
+
 const Navbar: React.FC = () => {
+  const handleClick = () => {
+    alert("Fitur masih dalam tahap pengembangan");
+  };
   return (
     <nav className={Navstyle.navbar}>
         <div className={Navstyle.navbarLi}>
@@ -17,25 +21,25 @@ const Navbar: React.FC = () => {
                     <p>MAIN MENU</p>
                 </div>
                 <div className={Navstyle.navbarMenu}>
-                  <li><Link href="/">
+                  <li onClick={handleClick}>
                     <div className={Navstyle.navbarMenuContent}>
                       <img src="/images/Dashboard.svg" alt="" />
                       <p>Dashboard</p>
                     </div>
-                  </Link></li>
-                  <li><Link href="/">
+                  </li>
+                  <li onClick={handleClick}>
                     <div className={Navstyle.navbarMenuContent}>
                       <img src="/images/Controlling.svg" alt="" />
                       <p>Device Controlling</p>
                     </div>
-                  </Link></li>
-                  <li><Link href="/">
+                  </li>
+                  <li onClick={handleClick}>
                     <div className={Navstyle.navbarMenuContent}>
                       <img src="/images/Monitoring.svg" alt="" />
                       <p>Device Monitoring</p>
                     </div>
-                  </Link></li>
-                  <li><Link href="/">
+                  </li>
+                  <li><Link href="/home">
                     <div className={Navstyle.navbarMenuContent}>
                       <img src="/images/Gate.svg" alt="" />
                       <p>Gate Access</p>
@@ -48,24 +52,24 @@ const Navbar: React.FC = () => {
                     <p>PREFERENCES</p>
                 </div>
                 <div className={Navstyle.navbarMenu}>
-                    <li><Link href="/">
+                    <li onClick={handleClick}>
                       <div className={Navstyle.navbarMenuContent}>
                         <img src="/images/Setting.svg" alt="" />
                         <p>Setting</p>
                       </div>
-                    </Link></li>
-                    <li><Link href="/">
+                    </li>
+                    <li onClick={handleClick}>
                       <div className={Navstyle.navbarMenuContent}>
                         <img src="/images/Help.svg" alt="" />
                         <p>Help Center</p>
                       </div>
-                    </Link></li>
-                    <li><Link href="/">
+                    </li>
+                    <li onClick={handleClick}>
                       <div className={Navstyle.navbarMenuContent}>
                         <img src="/images/Mode.svg" alt="" />
                         <p>Mode</p>
                       </div>
-                    </Link></li>
+                    </li>
                 </div>
               </div>
           </div>
@@ -76,10 +80,12 @@ const Navbar: React.FC = () => {
               <p>Administrator</p>
             </div>
           </div>
+          <Link href="/">
           <div className={Navstyle.navbarLogout}>
             <img src="/images/Logout.svg" alt="" />
             <p>Logout</p>
           </div>
+          </Link>
         </div>
     </nav>
   );
