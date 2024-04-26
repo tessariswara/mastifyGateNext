@@ -7,21 +7,27 @@
 
 .containerSearch {
     display: flex;
-    flex: 1;
     gap: 20px;
+    margin-bottom: 37px;
 }
 
 .containerSearch input{
-    background-color: #D9D9D9;
-    border: 0;
-    padding: 19px 20px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #ECEEF0;
+    padding: 19px 25px;
+    width: 100%
 }
 
 .containerSearch button {
+    background-color: #ECEEF0;
+    border-radius: 15px;
     border: 0;
     padding: 19px 0;
-    cursor: pointer;
     width: 150px;
+    font-size: 15px;
+    cursor: pointer;
+    color: black;
 }
 
 .containerBody {
@@ -29,24 +35,29 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 30px 0;
+    margin: 21px 0;
 }
 
 .control {
     display: flex;
     flex-direction: row;
     justify-content: right;
-    margin-top: 25px;
     gap: 20px;
 }
 
 .control button {
-    background-color: #424242;
+    background-color: #ECEEF0;
     border: 0;
-    color: white;
+    border-radius: 15px;
     padding: 15px 20px; 
     font-size: 15px;
     cursor: pointer;
+    color: black;
+}
+
+.control button:hover, .containerSearch button:hover {
+    background-color: #005229;
+    color: white;
 }
 
 .listHeader, .listData, .listReaderData {
@@ -55,7 +66,6 @@
     text-align: center;
     gap: 3px;
 }
-
 
 .listReaderHeader {
     display: grid;
@@ -68,15 +78,19 @@
 .listReaderHead1, .listActReader  {
     justify-content: center;
     display: flex;
-    background-color: white;
-    font-weight: 600;
+    background-color: #424242;
+    color: white;
+    border-radius: 4px;
     font-size: 13px;
     margin: 0;
     align-items: center;
 }
 
-.listHeader h2 {
-    background-color: darkgrey;
+.listHeader h3 {
+    background-color: #424242;
+    font-weight: 500;
+    border-radius: 7px;
+    color: white;
     margin: 0;
     padding: 15px;
 }
@@ -101,19 +115,23 @@
 }
 
 .listJudul {
-    background-color: white;
+    background-color: #424242;
+    border-radius: 4px;
+    color: white;
     padding: 15px;
 }
 
 .listData p {
-    background-color: #D9D9D9;
+    background-color: #ECEEF0;
     padding: 15px;
     font-size: 15px;
     margin: 0;
+    border-radius: 7px;
 }
 
 .listReaderData p {
-    background-color: white;
+    background-color: #ECEEF0;
+    border-radius: 4px;
     padding: 10px;
     font-size: 15px;
     margin: 0;
@@ -121,12 +139,14 @@
 
 .listAct {
     display: flex;
-    background-color: #D9D9D9;
+    background-color: #ECEEF0;
+    border-radius: 7px;
 }
 
 .listReaderAct {
     display: flex;
-    background-color: white;
+    background-color: #ECEEF0;
+    border-radius: 4px;
 }
 
 .listAction, .listReaderAction {
@@ -138,6 +158,7 @@
 
 .listAction img, .listReaderAction img {
     height: 30.5px;
+    filter: grayscale(100%);
 }
 
 .listAction a, .listReaderAction a {

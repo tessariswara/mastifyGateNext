@@ -102,6 +102,7 @@ const AddControllerModal: React.FC<AddControllerModalProps> = ({
                             type="text"
                             id="controllerID"
                             defaultValue={mode === 'edit' && controllerDetail ? controllerDetail.id : '' }
+                            placeholder='Enter Device Controller ID'
                         />
                     </div>
                     <div className={StyleModal.formModal}>
@@ -110,6 +111,7 @@ const AddControllerModal: React.FC<AddControllerModalProps> = ({
                             type="text"
                             id="controllerType"
                             defaultValue={mode === 'edit' && controllerDetail ? controllerDetail.type : '' }
+                            placeholder='Enter Device Controller Type'
                         />
                     </div>
                     <div className={StyleModal.formModal}>
@@ -118,6 +120,7 @@ const AddControllerModal: React.FC<AddControllerModalProps> = ({
                             type="text"
                             id="controllerName"
                             defaultValue={mode === 'edit' && controllerDetail ? controllerDetail.name : '' }
+                            placeholder='Enter Controller Name'
                         />
                     </div>
                     <div className={StyleModal.formModal}>
@@ -126,6 +129,7 @@ const AddControllerModal: React.FC<AddControllerModalProps> = ({
                             type="text"
                             id="controllerManufacture"
                             defaultValue={mode === 'edit' && controllerDetail ? controllerDetail.manufacture : '' }
+                            placeholder='Enter Manufacture'
                         />
                     </div>
                     <div className={StyleModal.formModal}>
@@ -134,6 +138,7 @@ const AddControllerModal: React.FC<AddControllerModalProps> = ({
                             type="text"
                             id="controllerIP"
                             defaultValue={mode === 'edit' && controllerDetail ? controllerDetail.ip : ''}
+                            placeholder='Enter IP Address'
                         />
                     </div>
                 </div>

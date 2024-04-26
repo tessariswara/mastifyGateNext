@@ -1,6 +1,10 @@
 body {
   margin: 0;
   letter-spacing: -0.3px;
+  font-family: "Plus Jakarta Sans";
+  /* background-color: #F6F8FA; */
+  /* background-color: red; */
+  height: 100%;
 }
 a {
   color: inherit; 

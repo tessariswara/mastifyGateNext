@@ -1,45 +1,111 @@
 .navbar {
-    /* background-color: brown; */
     display: flex;
-    align-items: center;
-}
-
-.navbarLogo {
-    background-color: #D9D9D9;
-    padding: 19px 20px;
-}
-
-.navbarUser {
-    display: flex;
-    gap: 23px;
-}
-
-.navbarUser li {
-    display: flex;
-    background-color: #D9D9D9;
-    padding: 19px 20px;
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+    background-color: white;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1); 
 }
 
 .navbarLi {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1;
     justify-content: space-between;
-    margin: auto;
-    padding: 45px 100px;
+    padding: 45px 20px 20px 20px;
 }
 
-.navbar-user-photo {
-    background-color: red;
-    width: 56px;
-    height: 56px;
+.navbarLogo {
+    display: flex;
+    gap: 23px;
+    margin-bottom: 40px;
+}
+
+.navbarLogo img {
+    height: 45px;
+    padding: 0 15px;
+}
+
+.navLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.navbarHeadline {
+    color: #505050;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 5px;
+    padding: 0px 15px;
+}
+
+.navbarLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbarMenu {
+    display: flex;
+    flex-direction: column;
+    color: #505050;
+    list-style: none;
+    gap: 0px;
+}
+
+.navbarMenuContent {
+    display: flex;
+    flex-direction: row;
+    padding: 0 15px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.navbarMenuContent:hover, .navbarLogout:hover  {
+    background-color: #005229;
+    color: white;
+    transition: all .4s ease-in-out;
+}
+
+.navbarUsr {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    padding: 15px;
+    gap: 15px;
+}
+
+.navbarUserText {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #505050;
+}
+
+.navbarUserText h4 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.navbarUserText p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.navbarUsr img {
+    width: 50px;
+    height: 50px;
     border-radius: 200px;
 }
 
-.navbar-user-text {
+.navbarLogout {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    flex-direction: row;
+    padding: 0 15px;
+    border-radius: 10px;
+    gap: 10px;
+    list-style: none;
 }

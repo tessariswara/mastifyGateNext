@@ -65,6 +65,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                                 id="controllerID"
                                 value={controllerDetail ? controllerDetail.id : '' }
                                 readOnly />
+                                
                         </div>
                         <div className={StyleModal.detailInput}>
                             <label htmlFor="controllerType">Device Controller Type</label>
@@ -75,7 +76,7 @@ const DetailControllerModal: React.FC<DetailControllerModalProps> = ({
                                 readOnly />
                         </div>
                     </div>
-                    <div className={StyleModal.formModal}>
+                    <div className={StyleModal.formModalDet}>
                         <label htmlFor="controllerName">Controller Name</label>
                         <input
                             type="text"

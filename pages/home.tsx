@@ -7,6 +7,7 @@ import DetailControllerModal, { fetchDetail } from '../components/modal/detailCo
 import AddReaderModal from '../components/modal/addReaderModal';
 import ConfirmModal from '../components/modal/confirmationModal';
 import { getToken } from '@/components/api/token'
+import RootLayout from '@/components/RootLayout';
 
 const ActionType = {
     OPEN_MODAL: 'OPEN_MODAL',
@@ -188,23 +189,25 @@ const HomePage: React.FC = () => {
     };
 
     return (
+        <RootLayout>
         <div className={Style.container}>
-            <div className={Style.containerSearch}>
-                <input className={Style.containerSearch} type="text" placeholder='Search by Controller Name'/>
-                <button>Search</button>
-            </div>
-
             <div className={Style.containerBody}>
-                <h1>Device Management</h1>
+                <h1>Gate Access</h1>
                 <div className={Style.control}>
                     <button onClick={() => openModal('addControllerModal')}>Add Controller</button>
                     <button onClick={() => openModal('addReaderModal')}>Add Reader</button>
                 </div>
             </div>
+            
+            <div className={Style.containerSearch}>
+                <input className={Style.containerSearc} type="text" placeholder='Search by Controller Name'/>
+                <button className={Style.containerSearc}>Search</button>
+            </div>
+
             <div className={Style.listHeader}>
-                <h2>Controller</h2>
-                <h2>Total Reader</h2>
-                <h2>Action</h2>
+                <h3>Controller</h3>
+                <h3>Total Reader</h3>
+                <h3>Action</h3>
             </div>
             {modalState.controllerData && modalState.controllerData.map((controller, index) => (
                 <div className={Style.listData} key={index}>
@@ -294,6 +297,7 @@ const HomePage: React.FC = () => {
                 token={token}
             />
         </div>
+        </RootLayout>
     );
 };
 
