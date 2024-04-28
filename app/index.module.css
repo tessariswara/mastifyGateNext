@@ -165,3 +165,21 @@
     height: 30.49px;
     cursor: pointer;
 }
+
+.page {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 50px;
+}
+.pagination {
+    background-color: #ECEEF0;
+    border: none;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+    cursor: pointer;
+    color: black;
+    gap: 20px;
+}

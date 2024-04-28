@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import Style from '@/app/login.module.css';
 import StyleModal from '@/app/modal.module.css';
 import { useRouter } from 'next/router';
-import { setToken } from '@/components/api/token'
+import { setToken } from '@/components/api/token';
 import RootLayout from '@/components/RootLayout';
 
 const initialState = {

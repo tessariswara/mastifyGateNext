@@ -49,6 +49,11 @@ const HomePage: React.FC = () => {
     });
     const router = useRouter();
     const token = getToken();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [limit, setLimit] = useState(4);
+
     useEffect(() => {
         const fetchController = async () => {
             try {
@@ -65,8 +70,8 @@ const HomePage: React.FC = () => {
                         set_ip_address: false,
                         ip_address: ""
                     },
-                    limit: 10,
-                    page: 1,
+                    limit: limit,
+                    page: currentPage, 
                     order: "created_at",
                     sort: "DESC"
                 };
@@ -90,6 +95,8 @@ const HomePage: React.FC = () => {
                 }));
                 console.log(data)
                 dispatch({ type: ActionType.SET_CONTROLLER_DATA, controllerData: dataModified });
+                const totalPagesCount = Math.ceil(data.total_data/limit);
+                setTotalPages(totalPagesCount);
             } catch (error) {
                 console.error('Error fetching controller data:', error.status);
                 if (error.message === "Failed to fetch") {
@@ -98,7 +105,7 @@ const HomePage: React.FC = () => {
             }
         };
         fetchController();
-    }, []);
+    }, [currentPage]);
 
     const openModal = async (modalType, index) => {
         if (modalType === 'detailControllerModal' || modalType === 'editControllerModal') {
@@ -140,6 +147,58 @@ const HomePage: React.FC = () => {
         } else {
             dispatch({ type: ActionType.OPEN_MODAL, modalType });
         }
+    };
+
+    const handleSearch = async () => {
+        try {
+            const bodyData = {
+                filter: {
+                    set_device_id: false,
+                    device_id: "",
+                    set_device_type: false,
+                    device_type: "",
+                    set_name: true,
+                    name: searchTerm,
+                    set_manufacture: false,
+                    manufacture: "",
+                    set_ip_address: false,
+                    ip_address: ""
+                },
+                limit: 10,
+                page: 1,
+                order: "created_at",
+                sort: "DESC"
+            };
+            const response = await fetch('http://178.128.107.238:8000/apiv1/control/allcontrollers', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bodyData)
+            });
+            const data = await response.json();
+            const dataModified = data.data.map(item => ({
+                ...item,
+                sid: item.id,
+                id: item.device_controller_id,
+                type: item.device_controller_type,
+                name: item.name,
+                manufacture: item.manufacture,
+                ip: item.ip_address
+            }));
+            console.log(data)
+            dispatch({ type: ActionType.SET_CONTROLLER_DATA, controllerData: dataModified });
+        } catch (error) {
+            console.error('Error fetching controller data:', error.status);
+            if (error.message === "Failed to fetch") {
+                router.push('/');
+            }
+        }
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
     };
 
     const closeModal = (modalType) => {
@@ -200,8 +259,14 @@ const HomePage: React.FC = () => {
             </div>
             
             <div className={Style.containerSearch}>
-                <input className={Style.containerSearc} type="text" placeholder='Search by Controller Name'/>
-                <button className={Style.containerSearc}>Search</button>
+                <input 
+                        className={Style.containerSearc} 
+                        type="text" 
+                        placeholder='Search by Controller Name'
+                        value={searchTerm} 
+                        onChange={handleSearchChange} 
+                    />
+                <button onClick={handleSearch}>Search</button>
             </div>
 
             <div className={Style.listHeader}>
@@ -234,6 +299,13 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             ))}
+            <div className={Style.page}>
+                {Array.from(Array(totalPages).keys()).map(page => (
+                    <button className={Style.pagination} key={page} onClick={() => setCurrentPage(page + 1)}>
+                        {page + 1}
+                    </button>
+                ))}
+            </div>
             <DetailControllerModal
                 isOpen={modalState.detailControllerModal}
                 onClose={() => closeModal('detailControllerModal')}

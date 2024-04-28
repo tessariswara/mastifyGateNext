@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         <div className={Navstyle.navbarLi}>
           <div className={Navstyle.navbarLayout}>
               <div className={Navstyle.navbarLogo}>
-                <Link href="/home"><img src="/images/habitatMenu.png" alt="" /></Link>
+                <Link href="/table"><img src="/images/habitatMenu.png" alt="" /></Link>
               </div>
           </div>
           <div className={Navstyle.navLayout}>
